@@ -3,6 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import os
+st.write("Files in repo:", os.listdir())
+
+
 st.set_page_config(page_title="Math Students Dashboard", layout="wide")
 
 st.title("📊 Math Students Performance Dashboard")
