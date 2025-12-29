@@ -10,7 +10,7 @@ st.success("App started successfully ✅")
 
 # Load data
 df = pd.read_csv(
-    "MathEdataset.csv",
+    "MathEdataset_dashboard.csv",
     sep=";",
     encoding="latin1",
     on_bad_lines="skip"
