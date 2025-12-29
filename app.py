@@ -111,30 +111,6 @@ st.divider()
 st.caption("Dashboard created using Streamlit • Math Education Dataset")
 
 
-
-
-
-
-
-
-#Histogram:
-#Student Accuracy (Numeric)
-st.subheader("Student Accuracy Distribution")
-fig, ax = plt.subplots()
-ax.hist(df["student_accuracy"], bins=20)
-ax.set_xlabel("Student Accuracy")
-ax.set_ylabel("Count")
-st.pyplot(fig)
-
-#Question Difficulty
-st.subheader("Question Difficulty Distribution")
-fig, ax = plt.subplots()
-ax.hist(df["question_difficulty"], bins=20)
-ax.set_xlabel("Question Difficulty")
-ax.set_ylabel("Count")
-st.pyplot(fig)
-
-
 #Boxplot
 #Final Grade vs Type of Answer
 if "G3" in df.columns:
