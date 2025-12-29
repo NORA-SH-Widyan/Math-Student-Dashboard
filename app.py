@@ -102,7 +102,7 @@ with col2:
 st.divider()
 
 # =========================
-# SECTION 5: Topic Analysis
+# SECTION 4: Topic Analysis
 # =========================
 st.header("🔹 Section 5: Topic Analysis")
 
@@ -115,6 +115,17 @@ top_topics = (
 st.subheader("Average Accuracy by Topic")
 st.bar_chart(top_topics)
 
+# =========================
+# SECTION 5: Key Insights
+# =========================
+st.header("🔹 Key Insights")
+
+st.markdown("""
+- Student accuracy decreases as question difficulty increases.
+- Advanced questions tend to include longer and more complex keywords.
+- Performance varies significantly across different mathematical topics.
+- Text-based features provide useful signals for modeling student performance.
+""")
 
 # =========================
 # Filters
@@ -130,25 +141,8 @@ selected_level = st.sidebar.multiselect(
 filtered_df = df[df["question_level"].isin(selected_level)]
 
 
-# =========================
-# SECTION 7: Key Insights
-# =========================
-st.header("🔹 Key Insights")
-
-st.markdown("""
-- Student accuracy decreases as question difficulty increases.
-- Advanced questions tend to include longer and more complex keywords.
-- Performance varies significantly across different mathematical topics.
-- Text-based features provide useful signals for modeling student performance.
-""")
-
-
-
 
 # =========================
 # Footer
 # =========================
 st.caption("Dashboard created using Streamlit • Math Education Dataset")
-
-
-
