@@ -127,53 +127,6 @@ st.markdown("""
 - Text-based features provide useful signals for modeling student performance.
 """)
 
-st.header("🔹 Section 6: Feature Correlation")
-
-numeric_cols = [
-    "student_accuracy",
-    "question_difficulty",
-    "keywords_word_count",
-    "keywords_unique_ratio",
-    "keywords_rare_ratio"
-]
-
-corr = df[numeric_cols].corr()
-
-fig, ax = plt.subplots()
-im = ax.imshow(corr)
-ax.set_xticks(range(len(numeric_cols)))
-ax.set_yticks(range(len(numeric_cols)))
-ax.set_xticklabels(numeric_cols, rotation=45, ha="right")
-ax.set_yticklabels(numeric_cols)
-fig.colorbar(im)
-st.pyplot(fig)
-
-
-
-
-
-
-
-
-
-
-
-
-# =========================
-# Filters
-# =========================
-#st.sidebar.header("Filters")
-
-#selected_level = st.sidebar.multiselect(
-    #"Select Question Level",
-    #df["question_level"].unique(),
-    #default=df["question_level"].unique()
-#)
-
-#filtered_df = df[df["question_level"].isin(selected_level)]
-
-
-
 # =========================
 # Footer
 # =========================
