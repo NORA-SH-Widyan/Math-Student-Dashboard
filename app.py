@@ -59,14 +59,6 @@ with col3:
         "Average Student Accuracy",
         round(df["student_accuracy"].mean(), 3)
     )
-with col4:
-    st.subheader("📌 Top 10 Topics in the Dataset")
-
-if "topic" in df.columns:
-    top_topics = df["topic"].value_counts().head(10)
-    st.bar_chart(top_topics)
-else:
-    st.info("Topic column not available.")
 
 st.divider()
 
@@ -93,12 +85,8 @@ st.divider()
 # =========================
 # SECTION 3: Difficulty & Topic Overview
 # =========================
-st.header("🔹 Section 3: Difficulty and Topic Overview")
+st.header("🔹 Section 3: Question Difficulty Distribution")
 
-col1, col2 = st.columns(2)
-
-with col1:
-    st.subheader("Question Difficulty Distribution")
     fig, ax = plt.subplots()
     ax.hist(df["question_difficulty"], bins=20)
     ax.set_xlabel("Question Difficulty")
