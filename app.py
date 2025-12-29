@@ -48,14 +48,7 @@ level_counts = df["Question Level"].value_counts()
 st.bar_chart(level_counts)
 
 #Boxplot
-#Keywords Word Count (Text → Numeric)
-st.subheader("Keywords Word Count")
-fig, ax = plt.subplots()
-ax.boxplot(df["keywords_word_count"].dropna(), vert=False)
-ax.set_xlabel("Word Count")
-st.pyplot(fig)
-
-#Boxplot: Final Grade vs Type of Answer
+#Final Grade vs Type of Answer
 if "G3" in df.columns:
     st.subheader("Final Grade by Type of Answer")
     fig, ax = plt.subplots()
