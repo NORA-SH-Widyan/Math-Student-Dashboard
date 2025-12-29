@@ -139,7 +139,7 @@ if "G3" in df.columns:
     ax.set_title("")
     ax.set_xlabel("Type of Answer")
     ax.set_ylabel("Final Grade")
-    st.pyplot(fig
+    st.pyplot(fig)
 
 
 
