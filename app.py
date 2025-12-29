@@ -116,10 +116,6 @@ st.caption("Dashboard created using Streamlit • Math Education Dataset")
 
 
 
-#Bar Chart/ Type of Answer
-st.subheader("Distribution of Type of Answer")
-answer_counts = df["Type of Answer"].value_counts().sort_index()
-st.bar_chart(answer_counts)
 
 #Histogram:
 #Student Accuracy (Numeric)
