@@ -112,18 +112,18 @@ with col1:
     st.subheader("Keywords Word Count Distribution")
     fig, ax = plt.subplots()
     ax.boxplot(df["keywords"].dropna(), vert=False)
-    ax.set_xlabel("Keywords Word Count")
+    ax.set_xlabel("Keywords")
     st.pyplot(fig)
 
 with col2:
     st.subheader("Keywords Word Count vs Accuracy")
     fig, ax = plt.subplots()
     ax.scatter(
-        df["keywords_word_count"],
+        df["keywords"],
         df["student_accuracy"],
         alpha=0.5
     )
-    ax.set_xlabel("Keywords Word Count")
+    ax.set_xlabel("Keywords")
     ax.set_ylabel("Student Accuracy")
     st.pyplot(fig)
 
