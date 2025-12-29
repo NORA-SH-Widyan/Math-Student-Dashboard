@@ -32,22 +32,6 @@ def load_data():
 
 df = load_data()
 
-
-# Feature vs Target
-if "G3" in df.columns:
-    st.subheader("Feature vs Final Grade (G3)")
-    fig, ax = plt.subplots()
-    ax.scatter(df[feature], df["G3"])
-    ax.set_xlabel(feature)
-    ax.set_ylabel("Final Grade (G3)")
-    ax.set_title(f"{feature} vs G3")
-    st.pyplot(fig)
-
-
-
-
-
-
 # =========================
 # SECTION 1: Overview
 # =========================
@@ -130,7 +114,48 @@ st.subheader("Average Accuracy by Topic")
 st.bar_chart(top_topics)
 
 # =========================
-# SECTION 5: Key Insights
+# SECTION 5: Feature vs Student Accuracy
+# =========================
+st.header("🔹 Section 4: Feature vs Student Accuracy")
+
+# اختيار الفيشرز الرقمية فقط
+numeric_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
+
+# نشيل التارجت من الليست
+if "student_accuracy" in numeric_features:
+    numeric_features.remove("student_accuracy")
+
+if len(numeric_features) == 0:
+    st.warning("No numeric features available for comparison.")
+else:
+    feature = st.selectbox(
+        "Select a feature to compare with Student Accuracy:",
+        numeric_features
+    )
+
+    fig, ax = plt.subplots()
+    ax.scatter(
+        df[feature],
+        df["student_accuracy"],
+        alpha=0.5
+    )
+    ax.set_xlabel(feature)
+    ax.set_ylabel("Student Accuracy")
+    ax.set_title(f"{feature} vs Student Accuracy")
+
+    st.pyplot(fig)
+
+
+
+
+
+
+
+
+
+
+# =========================
+# SECTION 6: Key Insights
 # =========================
 st.header("🔹 Key Insights")
 
