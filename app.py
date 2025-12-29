@@ -34,6 +34,26 @@ def load_data():
 
 df = load_data()
 
+#Bar Chart/ Type of Answer
+st.subheader("Distribution of Type of Answer")
+answer_counts = df["Type of Answer"].value_counts().sort_index()
+st.bar_chart(answer_counts)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # =========================
 # SECTION 1: Overview
 # =========================
@@ -126,28 +146,6 @@ st.markdown("""
 - Performance varies significantly across different mathematical topics.
 - Text-based features provide useful signals for modeling student performance.
 """)
-
-
-
-
-#Boxplot
-#Final Grade vs Type of Answer
-if "G3" in df.columns:
-    st.subheader("Final Grade by Type of Answer")
-    fig, ax = plt.subplots()
-    df.boxplot(column="G3", by="Type of Answer", ax=ax)
-    ax.set_title("")
-    ax.set_xlabel("Type of Answer")
-    ax.set_ylabel("Final Grade")
-    st.pyplot(fig)
-
-
-
-
-
-
-
-
 
 # =========================
 # Footer
