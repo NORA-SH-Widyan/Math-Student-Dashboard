@@ -1,85 +1,133 @@
-import os
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
-
-st.set_page_config(page_title="Math Students Dashboard", layout="wide")
-
-st.title("📊 Math Students Performance Dashboard")
-st.success("App started successfully ✅")
-
-df = pd.read_csv(
-    "MathEdataset_dashboard.csv",
-    sep=";",
-    encoding="latin1",
-    on_bad_lines="skip"
+# =========================
+# Page config
+# =========================
+st.set_page_config(
+    page_title="Math Students Performance Dashboard",
+    layout="wide"
 )
 
-st.write("Dataset Preview")
-st.dataframe(df.head())
+st.title("📊 Math Students Performance Dashboard")
 
-#Bar Chart/ Type of Answer
-st.subheader("Distribution of Type of Answer")
-answer_counts = df["Type of Answer"].value_counts().sort_index()
-st.bar_chart(answer_counts)
+# =========================
+# Load data
+# =========================
+@st.cache_data
+def load_data():
+    df = pd.read_csv(
+        "MathEdataset_dashboard.csv",
+        sep=";",
+        encoding="latin1",
+        on_bad_lines="skip"
+    )
+    # clean column names
+    df.columns = (
+        df.columns
+        .str.strip()
+        .str.lower()
+        .str.replace(" ", "_")
+    )
+    return df
 
-#Histogram:
-#Student Accuracy (Numeric)
-st.subheader("Student Accuracy Distribution")
-fig, ax = plt.subplots()
-ax.hist(df["student_accuracy"], bins=20)
-ax.set_xlabel("Student Accuracy")
-ax.set_ylabel("Count")
-st.pyplot(fig)
+df = load_data()
 
-#Question Difficulty
-st.subheader("Question Difficulty Distribution")
-fig, ax = plt.subplots()
-ax.hist(df["question_difficulty"], bins=20)
-ax.set_xlabel("Question Difficulty")
-ax.set_ylabel("Count")
-st.pyplot(fig)
+# =========================
+# SECTION 1: Overview
+# =========================
+st.header("🔹 Section 1: Overview")
 
-#Question Level (Categorical)
-st.subheader("Question Level Distribution")
-level_counts = df["Question Level"].value_counts()
-st.bar_chart(level_counts)
+col1, col2, col3 = st.columns(3)
 
-#Boxplot
-#Final Grade vs Type of Answer
-if "G3" in df.columns:
-    st.subheader("Final Grade by Type of Answer")
+with col1:
+    st.metric("Number of Students", df["student_id"].nunique() if "student_id" in df.columns else "N/A")
+
+with col2:
+    st.metric("Number of Questions", df["question_id"].nunique() if "question_id" in df.columns else "N/A")
+
+with col3:
+    st.metric("Average Accuracy", round(df["student_accuracy"].mean(), 3))
+
+st.divider()
+
+# =========================
+# SECTION 2: Answer Analysis
+# =========================
+st.header("🔹 Section 2: Answer Analysis")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("Distribution of Type of Answer")
+    answer_counts = df["type_of_answer"].value_counts().sort_index()
+    st.bar_chart(answer_counts)
+
+with col2:
+    st.subheader("Accuracy by Question Level")
+    if "question_level" in df.columns:
+        level_acc = df.groupby("question_level")["student_accuracy"].mean()
+        st.bar_chart(level_acc)
+
+st.divider()
+
+# =========================
+# SECTION 3: Difficulty Impact
+# =========================
+st.header("🔹 Section 3: Difficulty Impact")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("Question Difficulty Distribution")
     fig, ax = plt.subplots()
-    df.boxplot(column="G3", by="Type of Answer", ax=ax)
-    ax.set_title("")
-    ax.set_xlabel("Type of Answer")
-    ax.set_ylabel("Final Grade")
+    ax.hist(df["question_difficulty"], bins=20)
+    ax.set_xlabel("Question Difficulty")
+    ax.set_ylabel("Count")
     st.pyplot(fig)
 
+with col2:
+    st.subheader("Question Difficulty vs Accuracy")
+    fig, ax = plt.subplots()
+    ax.scatter(
+        df["question_difficulty"],
+        df["student_accuracy"],
+        alpha=0.5
+    )
+    ax.set_xlabel("Question Difficulty")
+    ax.set_ylabel("Student Accuracy")
+    st.pyplot(fig)
 
-st.subheader("Keywords Word Count")
+st.divider()
 
-fig, ax = plt.subplots()
-ax.boxplot(df["keywords_word_count"].dropna(), vert=False)
-ax.set_xlabel("Word Count")
+# =========================
+# SECTION 4: Text Feature Insight
+# =========================
+st.header("🔹 Section 4: Text Feature Insight")
 
-st.pyplot(fig)
+col1, col2 = st.columns(2)
 
- 
+with col1:
+    st.subheader("Keywords Word Count Distribution")
+    fig, ax = plt.subplots()
+    ax.boxplot(df["keywords_word_count"].dropna(), vert=False)
+    ax.set_xlabel("Keywords Word Count")
+    st.pyplot(fig)
 
+with col2:
+    st.subheader("Keywords Word Count vs Accuracy")
+    fig, ax = plt.subplots()
+    ax.scatter(
+        df["keywords_word_count"],
+        df["student_accuracy"],
+        alpha=0.5
+    )
+    ax.set_xlabel("Keywords Word Count")
+    ax.set_ylabel("Student Accuracy")
+    st.pyplot(fig)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# =========================
+# Footer
+# =========================
+st.caption("Dashboard created using Streamlit • Math Education Dataset")
