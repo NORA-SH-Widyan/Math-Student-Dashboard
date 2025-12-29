@@ -5,12 +5,10 @@ import matplotlib.pyplot as plt
 # =========================
 # Page config
 # =========================
-st.set_page_config(
-    page_title="Math Students Performance Dashboard",
-    layout="wide"
-)
+st.set_page_config(page_title="Math Students Performance Dashboard",layout="wide")
 
 st.title("📊 Math Students Performance Dashboard")
+st.markdown("Interactive exploratory analysis of students performance data.")
 
 # =========================
 # Load data
@@ -33,6 +31,30 @@ def load_data():
     return df
 
 df = load_data()
+
+
+# Boxplot
+st.subheader("Boxplot")
+fig, ax = plt.subplots()
+ax.boxplot(df[feature].dropna(), vert=False)
+ax.set_title(f"Boxplot of {feature}")
+st.pyplot(fig)
+
+
+# Feature vs Target
+if "G3" in df.columns:
+    st.subheader("Feature vs Final Grade (G3)")
+    fig, ax = plt.subplots()
+    ax.scatter(df[feature], df["G3"])
+    ax.set_xlabel(feature)
+    ax.set_ylabel("Final Grade (G3)")
+    ax.set_title(f"{feature} vs G3")
+    st.pyplot(fig)
+
+
+
+
+
 
 # =========================
 # SECTION 1: Overview
