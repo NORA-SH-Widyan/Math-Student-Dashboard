@@ -34,48 +34,6 @@ def load_data():
 
 df = load_data()
 
-#Histogram:
-#Student Accuracy (Numeric)
-st.subheader("Student Accuracy Distribution")
-fig, ax = plt.subplots()
-ax.hist(df["student_accuracy"], bins=20)
-ax.set_xlabel("Student Accuracy")
-ax.set_ylabel("Count")
-st.pyplot(fig)
-
-#Question Difficulty
-st.subheader("Question Difficulty Distribution")
-fig, ax = plt.subplots()
-ax.hist(df["question_difficulty"], bins=20)
-ax.set_xlabel("Question Difficulty")
-ax.set_ylabel("Count")
-st.pyplot(fig)
-
-#Question Level (Categorical)
-st.subheader("Question Level Distribution")
-level_counts = df["Question Level"].value_counts()
-st.bar_chart(level_counts)
-
-#Boxplot
-#Final Grade vs Type of Answer
-if "G3" in df.columns:
-    st.subheader("Final Grade by Type of Answer")
-    fig, ax = plt.subplots()
-    df.boxplot(column="G3", by="Type of Answer", ax=ax)
-    ax.set_title("")
-    ax.set_xlabel("Type of Answer")
-    ax.set_ylabel("Final Grade")
-    st.pyplot(fig)
-
-
-
-
-
-
-
-
-
-
 # =========================
 # SECTION 1: Overview
 # =========================
