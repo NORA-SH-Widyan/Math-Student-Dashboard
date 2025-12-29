@@ -134,10 +134,6 @@ ax.set_xlabel("Question Difficulty")
 ax.set_ylabel("Count")
 st.pyplot(fig)
 
-#Question Level (Categorical)
-st.subheader("Question Level Distribution")
-level_counts = df["Question Level"].value_counts()
-st.bar_chart(level_counts)
 
 #Boxplot
 #Final Grade vs Type of Answer
