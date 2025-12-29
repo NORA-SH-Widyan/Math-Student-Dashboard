@@ -104,28 +104,6 @@ st.divider()
 # =========================
 # SECTION 4: Text Feature Insight
 # =========================
-st.header("🔹 Section 4: Text Feature Insight")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.subheader("Keywords Word Count Distribution")
-    fig, ax = plt.subplots()
-    ax.boxplot(df["Keywords,,,,,,,,,,,,"].dropna(), vert=False)
-    ax.set_xlabel("Keywords,,,,,,,,,,,,")
-    st.pyplot(fig)
-
-with col2:
-    st.subheader("Keywords Word Count vs Accuracy")
-    fig, ax = plt.subplots()
-    ax.scatter(
-        df["Keywords,,,,,,,,,,,,"],
-        df["student_accuracy"],
-        alpha=0.5
-    )
-    ax.set_xlabel("Keywords,,,,,,,,,,,,")
-    ax.set_ylabel("Student Accuracy")
-    st.pyplot(fig)
 
 # =========================
 # Footer
