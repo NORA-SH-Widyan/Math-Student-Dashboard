@@ -34,26 +34,6 @@ def load_data():
 
 df = load_data()
 
-#Bar Chart/ Type of Answer
-st.subheader("Distribution of Type of Answer")
-answer_counts = df["Type of Answer"].value_counts().sort_index()
-st.bar_chart(answer_counts)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # =========================
 # SECTION 1: Overview
 # =========================
