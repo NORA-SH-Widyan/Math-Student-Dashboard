@@ -9,6 +9,7 @@ st.set_page_config(page_title="Math Students Dashboard", layout="wide")
 st.title("📊 Math Students Performance Dashboard")
 st.success("App started successfully ✅")
 
+@st.cache_data
 # Load data
 df = pd.read_csv(
     "MathEdataset_dashboard.csv",
