@@ -86,16 +86,14 @@ with col1:
     st.pyplot(fig)
 
 with col2:
-    st.subheader("Question Difficulty vs Accuracy")
-    fig, ax = plt.subplots()
-    ax.scatter(
-        df["question_difficulty"],
-        df["student_accuracy"],
-        alpha=0.5
-    )
-    ax.set_xlabel("Question Difficulty")
-    ax.set_ylabel("Student Accuracy")
-    st.pyplot(fig)
+    st.subheader("📌 Top 10 Topics in the Dataset")
+
+    if "topic" in df.columns:
+        top_topics = df["topic"].value_counts().head(10)
+        st.bar_chart(top_topics)
+    else:
+        st.info("Topic column not available.")
+
 
 st.divider()
 
