@@ -60,17 +60,13 @@ with col3:
         round(df["student_accuracy"].mean(), 3)
     )
 with col4:
-    st.subheader("🎯 Average Accuracy by Topic")
+    st.subheader("📌 Top 10 Topics in the Dataset")
 
 if "topic" in df.columns:
-    topic_acc = (
-        df.groupby("topic")["student_accuracy"]
-        .mean()
-        .sort_values(ascending=False)
-        .head(10)
-    )
-    st.bar_chart(topic_acc)
-  
+    top_topics = df["topic"].value_counts().head(10)
+    st.bar_chart(top_topics)
+else:
+    st.info("Topic column not available.")
 
 st.divider()
 
