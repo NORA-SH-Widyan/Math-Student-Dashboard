@@ -33,14 +33,6 @@ def load_data():
 df = load_data()
 
 
-# Boxplot
-st.subheader("Boxplot")
-fig, ax = plt.subplots()
-ax.boxplot(df[feature].dropna(), vert=False)
-ax.set_title(f"Boxplot of {feature}")
-st.pyplot(fig)
-
-
 # Feature vs Target
 if "G3" in df.columns:
     st.subheader("Feature vs Final Grade (G3)")
