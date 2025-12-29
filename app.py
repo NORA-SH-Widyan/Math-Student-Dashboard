@@ -127,6 +127,28 @@ st.markdown("""
 - Text-based features provide useful signals for modeling student performance.
 """)
 
+
+
+
+#Boxplot
+#Final Grade vs Type of Answer
+if "G3" in df.columns:
+    st.subheader("Final Grade by Type of Answer")
+    fig, ax = plt.subplots()
+    df.boxplot(column="G3", by="Type of Answer", ax=ax)
+    ax.set_title("")
+    ax.set_xlabel("Type of Answer")
+    ax.set_ylabel("Final Grade")
+    st.pyplot(fig
+
+
+
+
+
+
+
+
+
 # =========================
 # Footer
 # =========================
