@@ -59,6 +59,13 @@ if "G3" in df.columns:
     st.pyplot(fig)
 
 
+st.subheader("Keywords Word Count")
+
+fig, ax = plt.subplots()
+ax.boxplot(df["keywords_word_count"].dropna(), vert=False)
+ax.set_xlabel("Word Count")
+
+st.pyplot(fig)
 
  
 
