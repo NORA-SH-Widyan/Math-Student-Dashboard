@@ -102,31 +102,9 @@ with col2:
 st.divider()
 
 # =========================
-# SECTION 4: Text Feature Insight
-# =========================
-
-# =========================
 # Footer
 # =========================
 st.caption("Dashboard created using Streamlit • Math Education Dataset")
 
 
-#Boxplot
-#Final Grade vs Type of Answer
-if "G3" in df.columns:
-    st.subheader("Final Grade by Type of Answer")
-    fig, ax = plt.subplots()
-    df.boxplot(column="G3", by="Type of Answer", ax=ax)
-    ax.set_title("")
-    ax.set_xlabel("Type of Answer")
-    ax.set_ylabel("Final Grade")
-    st.pyplot(fig)
 
-
-st.subheader("Keywords Word Count")
-
-fig, ax = plt.subplots()
-ax.boxplot(df["keywords_word_count"].dropna(), vert=False)
-ax.set_xlabel("Word Count")
-
-st.pyplot(fig)
