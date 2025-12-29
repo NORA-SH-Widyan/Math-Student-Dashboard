@@ -111,7 +111,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Keywords Word Count Distribution")
     fig, ax = plt.subplots()
-    ax.boxplot(df["keywords_word_count"].dropna(), vert=False)
+    ax.boxplot(df["keywords"].dropna(), vert=False)
     ax.set_xlabel("Keywords Word Count")
     st.pyplot(fig)
 
