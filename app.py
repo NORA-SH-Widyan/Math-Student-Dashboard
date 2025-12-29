@@ -85,10 +85,26 @@ st.divider()
 # =========================
 # SECTION 3: Difficulty & Topic Overview
 # =========================
-st.header("🔹 Section 3: Question Difficulty Distribution")
 
- fig, ax = plt.subplots() ax.hist(df["question_difficulty"], bins=20) ax.set_xlabel("Question Difficulty") ax.set_ylabel("Count") st.pyplot(fig)
-    
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("Top 10 Topics in the Dataset")
+    if "topic" in df.columns:
+        top_topics = df["topic"].value_counts().head(10)
+        st.bar_chart(top_topics)
+    else:
+        st.info("Topic column not available.")
+
+with col2:
+    st.subheader("Question Difficulty Distribution")
+    fig, ax = plt.subplots()
+    ax.hist(df["question_difficulty"], bins=20)
+    ax.set_xlabel("Question Difficulty")
+    ax.set_ylabel("Count")
+    st.pyplot(fig)
+
+
 st.divider()
 
 # =========================
@@ -112,7 +128,6 @@ st.divider()
 # SECTION 5: Feature Exploration
 # =========================
 st.header("🔹 Section 5: Feature vs Student Accuracy")
-st.info("Use the selector below to explore how different features relate to student accuracy.")
 
 # Select numeric features only
 numeric_features = df.select_dtypes(
