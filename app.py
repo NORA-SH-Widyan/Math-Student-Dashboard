@@ -10,13 +10,15 @@ st.title("📊 Math Students Performance Dashboard")
 st.success("App started successfully ✅")
 
 @st.cache_data
-# Load data
-df = pd.read_csv(
-    "MathEdataset_dashboard.csv",
-    sep=";",
-    encoding="latin1",
-    on_bad_lines="skip"
-)
+def load_data():
+    return pd.read_csv(
+        "MathEdataset_dashboard.csv",
+        sep=";",
+        encoding="latin1",
+        on_bad_lines="skip"
+    )
+
+df = load_data()
 
 st.write("Dataset Preview")
 st.dataframe(df.head())
