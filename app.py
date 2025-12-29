@@ -87,11 +87,7 @@ st.divider()
 # =========================
 st.header("🔹 Section 3: Question Difficulty Distribution")
 
-    fig, ax = plt.subplots()
-    ax.hist(df["question_difficulty"], bins=20)
-    ax.set_xlabel("Question Difficulty")
-    ax.set_ylabel("Count")
-    st.pyplot(fig)
+ fig, ax = plt.subplots() ax.hist(df["question_difficulty"], bins=20) ax.set_xlabel("Question Difficulty") ax.set_ylabel("Count") st.pyplot(fig)
     
 st.divider()
 
